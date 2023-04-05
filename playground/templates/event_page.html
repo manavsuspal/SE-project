@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LocalScene</title>
+    <script src="https://kit.fontawesome.com/98a2276151.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'event_styles.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="http://127.0.0.1:8000/playground/home/">LocalScene</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+       <ul class="navbar-nav">
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="http://127.0.0.1:8000/playground/logout/">Logout from {{ user.username }}</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="http://127.0.0.1:8000/playground/login/">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://127.0.0.1:8000/playground/signup/">Register</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <div class="mcontainer">
+
+      <!-- Large column for event info -->
+      <div class="desc-div">
+        <img src="{{ event_image }}" alt="Event Photo" class="event-image">
+        <h1 class="event-title">{{ event_name }}</h1>
+        <p class="event-description">
+          {{ event_description }}
+        </p>
+      </div>
+      
+      <!-- Small column for event details -->
+      <div class="details-div">
+        <h2>Event Details</h2>
+        <ul class = "details-list">
+          <li><strong>Time:</strong> {{ event_time }}</li>
+          <li><strong>Venue:</strong> {{ event_venue }}</li>
+          <li><strong>State:</strong> {{ event_state }}</li>
+
+        </ul>
+        <form method="post">
+          {% csrf_token %}
+          <button type="submit">I am interested!</button>
+        </form>
+      </div>
+    </div>
+    
+  </body>
+</html>

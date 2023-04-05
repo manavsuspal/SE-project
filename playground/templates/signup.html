@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Signup{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'signup_styles.css' %}">
+{% endblock %}
+{% block content %}
+    <!-- main -->
+    <div class="main-w3layouts wrapper">
+        <h1>Sign Up </h1>
+        <div class="main-agileinfo">
+            <div class="agileits-top">
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                                        
+                    <!-- <input class="text" type="text" name="Username" placeholder="Username" required="">
+                    <input class="text email" type="email" name="email" placeholder="Email" required="">
+                    <input class="text" type="password" name="password1" placeholder="Password" required="">
+                    <input class="text w3lpass" type="password" name="password2" placeholder="Confirm Password" required="">
+                    <div class="wthree-text"> -->
+                        <div class="clear"> </div>
+                    </div>
+                    <input type="submit" value="SIGNUP">
+                </form>
+                <p>Have an account? <a href="#"> Login Here</a></p>
+            </div>
+        </div>
+        </ul>
+    </div>
+
+{% endblock %}
